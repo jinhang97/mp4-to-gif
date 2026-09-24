@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #eef2f7;
+  color: #0f172a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 40px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #2563eb;
+  background: #dbeafe;
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+main {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* 拖拽区 */
+.drop-zone {
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  color: #64748b;
+  outline: none;
+}
+
+.drop-zone:hover,
+.drop-zone:focus,
+.drop-zone.drag {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.drop-icon {
+  margin-bottom: 10px;
+}
+
+.drop-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.hint {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* 文件信息 */
+.file-info .row {
+  display: flex;
+  padding: 5px 0;
+  font-size: 13px;
+  gap: 12px;
+}
+
+.file-info .label {
+  flex: 0 0 64px;
+  color: #64748b;
+}
+
+.file-info .value {
+  flex: 1;
+  word-break: break-all;
+  font-weight: 500;
+}
+
+/* 设置区 */
+.settings h2,
+.output h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #334155;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.field select,
+.field input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #0f172a;
+  outline: none;
+}
+
+.field select:focus,
+.field input[type="number"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.field .hint {
+  margin-top: 5px;
+}
+
+.checkbox-label {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.checkbox-label input {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+/* 时间段 */
+.time-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-range input {
+  flex: 1;
+  min-width: 0;
+}
+
+.time-sep {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* 输出位置 */
+.output-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.output-dir {
+  flex: 1;
+  font-size: 13px;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 按钮 */
+.btn {
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 18px;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: #2563eb;
+  color: #fff;
+  padding: 13px;
+  font-size: 15px;
+}
+
+.btn.primary:not(:disabled):hover {
+  background: #1d4ed8;
+}
+
+.btn.secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+/* 进度条 */
+.progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#progressFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  border-radius: 999px;
+  transition: width 0.2s;
+}
+
+#progressText {
+  font-size: 13px;
+  color: #475569;
+  text-align: center;
+}
+
+/* 结果 */
+.result {
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-all;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.result.success {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.result.error {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.result.error div {
+  max-height: 140px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

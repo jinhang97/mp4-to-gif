@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:">
+  <title>MP4 转 GIF 工具</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>MP4 转 GIF 工具</h1>
+    <p class="subtitle">GIF 默认无限循环播放</p>
+  </header>
+
+  <main>
+    <div id="dropZone" class="drop-zone" tabindex="0">
+      <svg class="drop-icon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <p class="drop-title">拖拽视频文件到此处</p>
+      <p class="hint">或点击选择文件（支持 mp4 / mov / mkv / avi / webm）</p>
+    </div>
+
+    <div id="fileInfo" class="card file-info hidden">
+      <div class="row"><span class="label">文件名</span><span id="fileName" class="value"></span></div>
+      <div class="row"><span class="label">时长</span><span id="fileDuration" class="value"></span></div>
+      <div class="row"><span class="label">分辨率</span><span id="fileResolution" class="value"></span></div>
+    </div>
+
+    <section class="card settings">
+      <h2>转换设置</h2>
+      <div class="field">
+        <label for="fps">帧率（FPS）</label>
+        <select id="fps">
+          <option value="5">5（文件最小）</option>
+          <option value="10">10</option>
+          <option value="15" selected>15（推荐）</option>
+          <option value="20">20</option>
+          <option value="25">25（最流畅）</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="width">输出宽度（像素）</label>
+        <input type="number" id="width" value="480" min="0" step="10">
+        <p class="hint">高度自动等比缩放；填 0 表示保持原始宽度</p>
+      </div>
+      <div class="field">
+        <label>截取时间段（秒）</label>
+        <div class="time-range">
+          <input type="number" id="startTime" value="0" min="0" step="0.1" aria-label="开始秒数">
+          <span class="time-sep">至</span>
+          <input type="number" id="endTime" min="0" step="0.1" placeholder="到结尾" aria-label="结束秒数">
+        </div>
+        <p class="hint">开始填 0、结束留空则转换全程；只转换该区间内的片段</p>
+      </div>
+      <div class="field checkbox-field">
+        <label class="checkbox-label">
+          <input type="checkbox" id="loop" checked>
+          <span>无限循环播放</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card output">
+      <h2>输出位置</h2>
+      <div class="output-row">
+        <span id="outputDirLabel" class="output-dir" title="默认与视频文件在同一文件夹">与视频文件相同</span>
+        <button id="chooseDirBtn" class="btn secondary" type="button">更改文件夹</button>
+      </div>
+    </section>
+
+    <button id="convertBtn" class="btn primary" disabled>开始转换</button>
+
+    <div id="progressWrap" class="progress-wrap hidden">
+      <div class="progress-bar"><div id="progressFill"></div></div>
+      <div id="progressText">正在转换… 0%</div>
+    </div>
+
+    <div id="result" class="card result hidden"></div>
+  </main>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
